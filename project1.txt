@@ -1,0 +1,57 @@
+class VolunteerCoordinator:
+    def _init_(self):
+        self.volunteers = {}  # Dictionary to hold volunteers and their sports
+        print(f"VolunteerCoordinator initialized with empty volunteers: {self.volunteers}")
+
+    def add_volunteer(self, name, sport):
+        if name in self.volunteers:
+            print(f"Volunteer '{name}' already exists.")
+        else:
+            self.volunteers[name] = sport
+            print(f"Volunteer '{name}' added for '{sport}'.")
+
+    def delete_volunteer(self, name):
+        if name in self.volunteers:
+            del self.volunteers[name]
+            print(f"Volunteer '{name}' deleted.")
+        else:
+            print(f"Volunteer '{name}' not found.")
+
+    def view_volunteers(self):
+        if not self.volunteers:
+            print("No volunteers found.")
+        else:
+            print("List of Volunteers:")
+            for name, sport in self.volunteers.items():
+                print(f"- {name}: {sport}")
+        print(f"Current volunteers: {self.volunteers}")  # Print current state of volunteers for debugging
+
+def main():
+    coordinator = VolunteerCoordinator()
+
+    while True:
+        print("\nVolunteer Coordinator Menu:")
+        print("1. Add Volunteer")
+        print("2. Delete Volunteer")
+        print("3. View Volunteers")
+        print("4. Exit")
+
+        choice = input("Choose an option (1-4): ")
+
+        if choice == '1':
+            name = input("Enter volunteer's name: ")
+            sport = input("Enter sport they are volunteering for: ")
+            coordinator.add_volunteer(name, sport)
+        elif choice == '2':
+            name = input("Enter volunteer's name to delete: ")
+            coordinator.delete_volunteer(name)
+        elif choice == '3':
+            coordinator.view_volunteers()
+        elif choice == '4':
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid option. Please choose again.")
+
+if __name__ == "__main__":
+    main()
